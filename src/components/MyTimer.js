@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import { ReactComponent as ClockIcon } from '../icons/clock.svg'
 import { ReactComponent as CalenderIcon } from '../icons/calendar.svg';
+import './MyTimer.css';
+
 
 
 function MyTimer(props) {
@@ -14,7 +16,7 @@ function MyTimer(props) {
   // console.log(props.timerStatus);
 
     return (
-        <div className="App">
+        <div className="App timer">
             <CalenderIcon />
             <p>
               {' '}
@@ -33,6 +35,7 @@ function MyTimer(props) {
                 hour12: true,
             })}
             </p>
+            
         </div>
     );
 }

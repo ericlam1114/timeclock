@@ -50,7 +50,7 @@ const ColumnNav = () => {
       </nav>
       <div className="content">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <p> Click play to clock in</p>
+          {/* <p> Click play to clock in</p> */}
           <div className="toggle-wrapper">
             {playButton === "Play" ? (
               <FaPlayCircle
@@ -63,7 +63,7 @@ const ColumnNav = () => {
                 className="playButtonStyle"
               />
             )}
-            <MyTimer timerStatus={playButton} />
+            // <MyTimer timerStatus={playButton} />
           </div>
 
           {""}

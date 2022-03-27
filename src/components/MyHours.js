@@ -1,12 +1,16 @@
 import React from "react";
 import { useState } from "react";
+import MyTable from "./MyTable";
+import "./MyHours.css";
+import { Button } from 'reactstrap';
 // import { Button } from "react-bootstrap";
 
 const MyHours = () => {
   // const initDate = null;
   const [clockInTime, setClockInTime] = useState("");
   const [clockOutTime, setClockOutTime] = useState("");
-  const [timeDisplay, setTimeDisplay] = useState("");
+  // const [timeDisplay, setTimeDisplay] = useState("");
+  const [newDay, setNewDay] = useState("");
 
   const clockIn = (event) => {
     event.preventDefault();
@@ -16,6 +20,24 @@ const MyHours = () => {
 
     setClockInTime(clockInString);
     console.log(clockInString);
+    const newDay = new Date();
+    let today = newDay.getDay();
+    if (today === 1) {
+      setNewDay("Monday");
+    } else if (today === 2) {
+      setNewDay("Tuesday");
+    } else if (today === 3) {
+      setNewDay("Wednesday");
+    } else if (today === 4) {
+      setNewDay("Thursday");
+    } else if (today === 5) {
+      setNewDay("Friday");
+    } else if (today === 6) {
+      setNewDay("Saturday");
+    } else if (today === 0) {
+      setNewDay("Sunday");
+    }
+    // console.log(today);
     // setNewDate(initDate);
   };
   const clockOut = (event) => {
@@ -35,30 +57,30 @@ const MyHours = () => {
     event.preventDefault();
     if (clockInTime && clockOutTime === "") {
       console.log("you forgot to clock out");
-    }else {
-      console.log('you worked these hours', clockInTime, clockOutTime);
+    } else {
+      console.log("you worked these hours", clockInTime, clockOutTime);
     }
   };
 
   return (
     <div>
       <form onSubmit={submitHandler}>
-        <div>
-          <div className="bg-light border">
+        
+          <div >
             <p>You Clocked In At {clockInTime}</p>
-            <button onClick={clockIn} value={clockInTime}>
+            <Button  color="primary" onClick={clockIn} value={clockInTime}>
               Clock In
-            </button>
+            </Button>
             <p>You Clocked Out At {clockOutTime}</p>
-            <button onClick={clockOut} value={clockOutTime}>
+            <Button  color="primary" onClick={clockOut} value={clockOutTime}>
               Clock Out
-            </button>
+            </Button>
           </div>
           <h3></h3>
-          <input type="submit" value="Submit" />
-        </div>
         
       </form>
+      <MyTable clockIn={clockInTime} clockOut={clockOutTime} day={newDay} />
+      <input  className="buttonEdit" type="submit" value="Submit" />
     </div>
   );
 };
